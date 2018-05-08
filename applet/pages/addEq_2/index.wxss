@@ -1,0 +1,29 @@
+.row {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.item_size {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    width: 200rpx;
+}
+
+.img {
+    width: 130rpx;
+    height: 130rpx;
+    margin-top: 35rpx;
+}
+
+.text {
+    font-size: 10pt;
+    margin-top: 10rpx;
+    margin-bottom: 15rpx;
+    color: #5a5a5a;
+}

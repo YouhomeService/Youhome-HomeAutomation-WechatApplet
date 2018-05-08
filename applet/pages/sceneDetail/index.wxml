@@ -1,0 +1,23 @@
+<view class="container">
+  <view class="card">
+    <image class= "scene_image" mode="aspectFill" src="{{scene_url}}"/>
+  </view>
+  <view class="menu">
+      <text>> 当前设备</text>
+  </view>
+  <view class="row">
+    <navigator wx:for="{{items}}" url="{{url}}?listId={{item.id}}&listName={{item.text}}">
+        <view class="item_size">
+            <image class="img" src="{{item.src}}"></image>
+            <view class="right">
+                <text class="text_1">{{item.text}}</text>
+                <view class="state">
+                    <image class="icon" src="{{item.icon}}"></image>
+                    <text class="text_2">{{item.state}}</text>
+                </view>
+            </view>
+        </view>
+    </navigator>
+  </view>
+  <button class='addEq' bindtap="addNewEq">添加新设备</button>
+</view>

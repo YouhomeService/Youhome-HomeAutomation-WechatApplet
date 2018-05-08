@@ -1,0 +1,47 @@
+page{
+  background: #acacac;
+}
+
+.image_icon image{
+  position: absolute;
+  height: 180px;
+  width: 180px;
+  left: 0;
+  right: 0;
+  top: 50px;
+  margin: auto;
+}
+
+.image_icon .button_1{
+  position: absolute;
+  height: 30px;
+  width: 130px;
+  left: 0;
+  right: 0;
+  top: 300px;
+  margin: auto;
+  border-color: #d6eaf3;
+  border-radius: 10px;
+  line-height: 30px;
+  -webkit-text-fill-color: #d6eaf3;
+  -webkit-text-stroke-color: #d6eaf3;
+  -moz-text-decoration-color: #d6eaf3;
+  font-size: 11pt;
+}
+
+.image_icon .button_2{
+  position: absolute;
+  height: 30px;
+  width: 130px;
+  left: 0;
+  right: 0;
+  top: 360px;
+  margin: auto;
+  border-color: #d6eaf3;
+  border-radius: 10px;
+  line-height: 30px;
+  -webkit-text-fill-color: #d6eaf3;
+  -webkit-text-stroke-color: #d6eaf3;
+  -moz-text-decoration-color: #d6eaf3;
+  font-size: 11pt;
+}

@@ -1,0 +1,30 @@
+page{
+  background: #acacac;
+}
+
+.image_icon {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  right: 0;
+  top: 70px;
+}
+
+.image_icon image{
+  position: absolute;
+  height: 180px;
+  width: 180px;
+  left: 0;
+  right: 0;
+  top: 100px;
+  margin: auto;
+}
+
+.image_icon text{
+  position: relative;
+  display: flex;
+  width: 100%;
+  font-size: 11pt;
+  color: #ffffff;
+  justify-content: center;
+}

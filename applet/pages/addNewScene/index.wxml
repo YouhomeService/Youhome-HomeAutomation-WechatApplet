@@ -1,0 +1,13 @@
+<view class='image_icon'>
+    <input placeholder="请输入场景名称" class="name"/>
+</view>
+<text class='choose'>> 请在下列选择一张壁纸</text>
+<view class='container'>
+    <view class="row">
+        <navigator wx:for="{{items}}">
+            <view class="item_size">
+                <image class="img" src="{{item.src}}"></image>
+            </view>
+        </navigator>
+    </view>
+</view>

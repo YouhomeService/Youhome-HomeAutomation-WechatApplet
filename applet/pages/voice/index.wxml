@@ -1,0 +1,9 @@
+<view class='init'>
+    <text class="{{isChecked?'text_1_is_checked':'text_1_normal'}}">你可以这样说：</text>
+    <text class="{{isChecked?'text_2_is_checked':'text_2_normal'}}">"打开空调"
+    "启动扫地机器人"
+    "电饭煲设为快煮模式"
+    "打开空气净化器"
+    ……</text>
+    <button plain='true' class="{{isChecked?'button_is_checked':'button_normal'}}" bindtap="serviceSelection">{{button_text}}</button>
+</view>

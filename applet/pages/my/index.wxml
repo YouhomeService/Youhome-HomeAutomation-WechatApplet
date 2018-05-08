@@ -1,0 +1,29 @@
+<!--index.wxml-->
+<view class="container">
+  <view bindtap="bindViewTap" class="userinfo" style="background-image: url('https://s9.postimg.cc/6seh8d7cf/20180506224240.png');background-size: cover">
+    <button class='btn' plain='true'><open-data type="userAvatarUrl" class="userinfo-avatar"></open-data></button>
+    <open-data type="userNickName" class="userinfo-nickname"></open-data>
+  </view>
+  <button class="scene">场景  {{s_num}}</button>
+  <button class="equipment">设备  {{e_num}}</button>
+  <view class="parting_line"></view>
+  <view class="info_list">
+    <block wx:for="{{info1}}">
+        <view class="info_1">
+            <view class="weui_cell_hd"><image src="{{item.icon}}"></image></view>
+            <view class="weui_cell_bd">
+                <view class="weui_cell_bd_p"> {{item.text}} </view>
+            </view>
+        </view>
+    </block>
+    <view class="parting_line"></view>
+    <block wx:for="{{info2}}">
+        <view class="info_2">
+            <view class="weui_cell_hd"><image src="{{item.icon}}"></image></view>
+            <view class="weui_cell_bd">
+                <view class="weui_cell_bd_p"> {{item.text}} </view>
+            </view>
+        </view>
+    </block>
+  </view>
+</view>

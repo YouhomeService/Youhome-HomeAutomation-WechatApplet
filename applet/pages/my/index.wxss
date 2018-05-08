@@ -1,0 +1,97 @@
+/**index.wxss**/
+page {
+  background-color: #f4f4f4;
+}
+.container {
+  background-color: #F2f2f2;
+}
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  padding: 50rpx 0;
+  align-items: center;
+}
+.userinfo-bg {
+  width: 100%;
+}
+.btn {
+  width: 180rpx;
+  height: 180rpx;
+  padding: 10rpx;
+  margin-top: 20rpx;
+  border-color: #f4f4f4;
+}
+.userinfo-avatar {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 50%;
+  border-color: #f4f4f4;
+}
+.userinfo-nickname {
+  color: #505050;
+  font-size: 11pt;
+  margin-top: 5px;
+}
+button {
+  border-radius: 0;
+}
+button::after {
+  border-radius: 0;
+}
+.scene { 
+  width: 50%;
+  float: left;
+  background-color: #ffffff;
+  margin-bottom: 15px;
+  color: #505050;
+  font-size: 11pt
+}
+.equipment { 
+  width: 50%;
+  float: right;
+  background-color: #ffffff;
+  margin-bottom: 15px;
+  color: #505050;
+  font-size: 11pt
+}
+.info_1 {
+  position: relative;
+  display: flex;
+  padding: 10px;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background-color: #ffffff;
+  border-bottom: 1px solid #dadada;
+}
+.parting_line {
+  position: relative;
+  margin-bottom: 15px;
+}
+.info_2 {
+  position: relative;
+  display: flex;
+  padding: 10px;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background-color: #ffffff;
+  border-bottom: 1px solid #dadada;
+}
+.weui_cell_hd {
+  display: inline-block;
+  width: 20px;
+  margin-right: 15px;
+}
+.weui_cell_hd image {
+  width: 100%;
+  height: 20px;
+  vertical-align: -2px;
+}
+.weui_cell_bd {
+  display: inline-block;
+}
+.weui_cell_bd_p {
+  font-size: 14px;
+  color: #505050;
+}

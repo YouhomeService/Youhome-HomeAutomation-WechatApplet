@@ -1,0 +1,5 @@
+<view class='image_icon'>
+    <image src='../../images/space-B1knmIEpG.png'></image>
+    <button plain='true' class='button_1' bindtap="scan">扫描设备</button>
+    <button plain='true' class='button_2' bindtap="hand">手动添加</button>
+</view>

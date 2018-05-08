@@ -1,0 +1,11 @@
+<view class="container">
+  <view class="card" wx:for="{{items}}" wx:key="{{id}}" bindtap="scene_detail" data-id="{{item.id}}" data-url="{{item.url}}">
+    <view bindtap = "onItemClick">
+       <image class= "image" mode="aspectFill" src="{{item.url}}"/>
+       <view class="text">{{item.text}}</view>
+    </view>
+  </view>
+  <view class="card" bindtap="addNewScene">
+    <image class= "image" mode="aspectFill" src='../../images/add.jpg'/>
+  </view>
+</view>
