@@ -15,12 +15,12 @@ App({
           success: res => {
             if (res.code) {
               // 发送 res.code 到后台换取 openId, sessionKey, unionId
-              wx.request({
+              /*wx.request({
                 url: '', //后台的登录url，等后台做好了填上
                 data: {
                   code: res.code
                 }
-              })
+              })*/
             } else {
               // 登陆失败
             }
