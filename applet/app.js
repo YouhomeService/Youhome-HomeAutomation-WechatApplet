@@ -6,12 +6,29 @@ App({
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
 
-    // 登录
-    wx.login({
-      success: res => {
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
+    wx.checkSession({
+      success: () => {
+
+      },
+      fail: () => {
+        wx.login({
+          success: res => {
+            if (res.code) {
+              // 发送 res.code 到后台换取 openId, sessionKey, unionId
+              wx.request({
+                url: '', //后台的登录url，等后台做好了填上
+                data: {
+                  code: res.code
+                }
+              })
+            } else {
+              // 登陆失败
+            }
+          }
+        })
       }
     })
+
     // 获取用户信息
     wx.getSetting({
       success: res => {
@@ -27,6 +44,16 @@ App({
               if (this.userInfoReadyCallback) {
                 this.userInfoReadyCallback(res)
               }
+            }
+          })
+        } else {
+          wx.authorize({
+            scope: 'scope.userInfo',
+            success: () => {
+
+            },
+            fail: () => {
+
             }
           })
         }
