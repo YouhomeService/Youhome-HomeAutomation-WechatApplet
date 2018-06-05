@@ -1,22 +1,3 @@
-const recorderManager = wx.getRecorderManager()
-recorderManager.onStart(() => {
-  //开始录制的回调方法
-})
-//录音停止函数
-recorderManager.onStop((res) => {
-  const { tempFilePath } = res;
-  //上传录制的音频
-  console.log(res);
-  /*wx.uploadFile({
-    url: app.d.hostUrl + '/Api/Index/wxupload', //仅为示例，非真实的接口地址
-    filePath: tempFilePath,
-    name: 'viceo',
-    success: function (res) {
-      console.log(res);
-    }
-  })*/
-})
-
 Page({
   data: {
     button_text: '请点按后开始说话',
@@ -31,9 +12,23 @@ Page({
       button_text: '正在聆听...',
       flag: 1
     });
-    recorderManager.start({
-      duration: 10000
-    })
+    wx.startRecord({
+      success: function (res) {
+        console.log('录音成功' + JSON.stringify(res));
+        const { tempFilePath } = res;
+        wx.uploadFile({
+          url: "https://123.207.55.27/v1/Voice/wxupload",
+          filePath: tempFilePath,
+          name: 'viceo',
+          success: function (res) {
+            console.log(res);
+          }})
+      }}
+    )
+    setTimeout(function () {
+      //结束录音  
+      wx.stopRecord()
+    }, 60000)
   },
   //松开按钮
   endHandle: function () {
@@ -44,6 +39,6 @@ Page({
       flag: 0
     });
     //触发录音停止
-    recorderManager.stop()
+    wx.stopRecord()
   }
 })  
