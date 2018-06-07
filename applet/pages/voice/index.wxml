@@ -5,5 +5,5 @@
     "电饭煲设为快煮模式"
     "打开空气净化器"
     ……</text>
-    <button plain='true' class="{{isChecked?'button_is_checked':'button_normal'}}" bindtap="serviceSelection">{{button_text}}</button>
+    <button plain='true' class="{{isChecked?'button_is_checked':'button_normal'}}" bindtouchstart='startHandel' bindtouchend='endHandle'>{{button_text}}</button>
 </view>

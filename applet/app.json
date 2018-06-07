@@ -9,7 +9,12 @@
     "pages/addEq_1/index",
     "pages/addEq_2/index",
     "pages/addEq_3/index",
-    "pages/logs/logs"
+    "pages/addEq_4/index",
+    "pages/gateway/index",
+    "pages/temperature_sensor/index",
+    "pages/smart_socket/index",
+    "pages/logs/logs",
+    "pages/test/index"
   ],
   "window":{
     "navigationBarBackgroundColor": "#fff",

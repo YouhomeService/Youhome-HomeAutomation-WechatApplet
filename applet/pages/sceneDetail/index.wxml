@@ -6,14 +6,14 @@
       <text>> 当前设备</text>
   </view>
   <view class="row">
-    <navigator wx:for="{{items}}" url="{{url}}?listId={{item.id}}&listName={{item.text}}">
-        <view class="item_size">
-            <image class="img" src="{{item.src}}"></image>
+    <navigator wx:for="{{items}}" >
+        <view class="item_size" data-name="{{item.deviceName}}" data-id="{{item.deviceId}}" bindtap="gotoDevice">
+            <image class="img" src="{{item.url}}"></image>
             <view class="right">
-                <text class="text_1">{{item.text}}</text>
+                <text class="text_1">{{item.deviceName}}</text>
                 <view class="state">
-                    <image class="icon" src="{{item.icon}}"></image>
-                    <text class="text_2">{{item.state}}</text>
+                    <image class="icon" src="{{state[index].icon}}"></image>
+                    <text class="text_2">{{state[index].deviceState}}</text>
                 </view>
             </view>
         </view>

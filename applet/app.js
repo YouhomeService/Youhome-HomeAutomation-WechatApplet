@@ -1,5 +1,12 @@
 //app.js
+
+var requests = require('request/request.js');
+
 App({
+  data: {
+    userId: ""
+  },
+
   onLaunch: function () {
     // 展示本地存储能力
     var logs = wx.getStorageSync('logs') || []
@@ -10,6 +17,15 @@ App({
     wx.login({
       success: res => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
+        requests.userLogin(res.code, (data) => {
+          if (data.length == 0) { 
+            console.log('登录失败')
+          } else {
+            console.log("登录成功，用户ID为：" + data.userId)
+            // 赋予userId正确的值
+            this.data.userId = data.userId
+          }
+        });
       }
     })
     // 获取用户信息

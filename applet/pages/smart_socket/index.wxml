@@ -1,0 +1,28 @@
+<view class="part_1">
+  <button class="circle" style="background-image: url('../../images/equipment/smart_socket.jpg');background-size: contain" ></button>
+  <text class='text'>插座电源已{{state}}</text>
+  <view class="text1">
+    <text class="text_1"></text>
+    <text class="text_2">{{in_use}} ></text>
+  </view>
+  <view class="text2">
+    <text class="text_1">{{current_w}} W</text>
+    <text class="text_2">当前功率 ></text>
+  </view>
+  <view class="text3">
+    <text class="text_1">{{month_consume}} 度</text>
+    <text class="text_2">已用电量 ></text>
+  </view>
+</view>
+
+<view class="part_2">
+  <view class="row">
+    <view wx:for="{{item}}">
+      <view class="choice">
+        <button class="button" style="{{item.img}}" data-name="{{item.text}}" bindtap="changeState"></button>
+        <text class="texts">{{item.text}}</text>
+      </view>
+    </view>
+  </view>
+</view>
+

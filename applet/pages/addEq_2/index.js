@@ -5,6 +5,7 @@ var arr_link = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18]
 
 Page({
   data: {
+    scene_id: '',
     items: [{
       id: "1",
       src: "../../images/equipment/gateway.jpg",
@@ -79,4 +80,13 @@ Page({
       text: arr_name[17]
     }]
   },
+
+  onLoad: function (options) {
+    // 页面初始化 options为页面跳转所带来的参数
+    var id = options.id;
+    this.setData({
+      scene_id: id
+    })
+  }
+  
 })

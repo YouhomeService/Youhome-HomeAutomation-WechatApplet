@@ -1,21 +1,8 @@
+var requests = require('../../request/request.js');
 var flag = true;
 Page({
   data: {
-    items: [{
-      url: 'https://s7.postimg.cc/yhiy9om2z/image.jpg',
-      text: '—— 卧 室 ——',
-      // id: 数据库里每个场景的标识id
-      id: '01'
-    }, {
-      url: 'https://s7.postimg.cc/9zqulloln/image.jpg',
-      text: '—— 客 厅 ——',
-      id: '02'
-    }, {
-        url: 'https://s7.postimg.cc/xdytxcbm3/image.jpg',
-      text: '—— 厨 房 ——',
-      id: '03'
-    }],
-    // text:"这是一个页面"
+    items: [],
     color: "window"
   },
   
@@ -35,11 +22,26 @@ Page({
   },
 
   onLoad: function (options) {
-    // 页面初始化 options为页面跳转所带来的参数
   },
+
   onReady: function () {
     // 页面渲染完成
+    requests.requestSearchRooms(getApp().data.userId, (data) => {
+      // console.log(data.length)
+      if (data.length == 0) {
+        // 没有记录
+        console.log('未添加任何房间')
+      } else {
+        // 先将roomName解码为中文
+        for (var i = 0; i < data.length; i++)
+          data[i].roomName = decodeURIComponent(data[i].roomName);
+        this.setData({
+          items: data
+        });
+      }
+    });
   },
+  
   onShow: function () {
     // 页面显示
   },
@@ -48,5 +50,21 @@ Page({
   },
   onUnload: function () {
     // 页面关闭
+  },
+  onPullDownRefresh: function () {
+    // 下拉刷新
+    requests.requestSearchRooms(getApp().data.userId, (data) => {
+      // console.log(data.length)
+      if (data.length == 0) {
+        console.log('未添加任何房间')
+      } else {
+        for (var i = 0; i < data.length; i++)
+          data[i].roomName = decodeURIComponent(data[i].roomName);
+        this.setData({
+          items: data
+        });
+      }
+    });
+    // wx.stopPullDownRefresh()
   }
 })

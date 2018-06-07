@@ -1,0 +1,7 @@
+<text class='text'>已扫描到以下设备，请选择：</text>
+<radio-group class="radio-group" bindchange="radioChange">
+  <label class="radio" wx:for="{{chin_items}}">
+    <radio value="{{chin_items[index]}}"/>{{chin_items[index]}}
+  </label>
+</radio-group>
+<button class='submit' bindtap='addSevice'>添加</button>

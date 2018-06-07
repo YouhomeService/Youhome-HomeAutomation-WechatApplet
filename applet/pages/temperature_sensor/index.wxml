@@ -1,0 +1,13 @@
+<view class="state">
+  <text class="text">{{state}}</text>
+</view>
+<view class="temper">
+  <text class="text_1">温度</text>
+  <text class='text_2'>{{temper}}</text>
+  <text class='text_3'>℃</text>
+</view>
+<view class="wet">
+  <text class='text_1'>湿度</text>
+  <text class='text_2'>{{wet}}</text>
+  <text class='text_3'>%</text>
+</view>

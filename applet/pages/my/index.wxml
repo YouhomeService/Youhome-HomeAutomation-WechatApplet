@@ -4,7 +4,7 @@
     <button class='btn' plain='true'><open-data type="userAvatarUrl" class="userinfo-avatar"></open-data></button>
     <open-data type="userNickName" class="userinfo-nickname"></open-data>
   </view>
-  <button class="scene">场景  {{s_num}}</button>
+  <button class="scene" bindtap="ClickEvent">房间  {{s_num}}</button>
   <button class="equipment">设备  {{e_num}}</button>
   <view class="parting_line"></view>
   <view class="info_list">

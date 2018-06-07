@@ -20,5 +20,11 @@ Page({
       icon: '../../images/my-setting.png',
       text: '设置'
     }]
-  }
+  },
+
+  ClickEvent: function () {
+    wx.navigateTo({
+      url: '../test/index'
+    })
+  },
 })

@@ -1,0 +1,54 @@
+<!--导航条-->
+<view class="navbar">
+  <text wx:for="{{navbar}}" data-idx="{{index}}" class="item {{currentTab==index ? 'active' : ''}}" wx:key="unique" bindtap="navbarTap">{{item}}</text>
+</view>
+
+<!--网关-->
+<view hidden="{{currentTab!==0}}">
+  <view class="setting">
+    <view class="btn">
+      <button class="light" style="background:{{lightcolor}};" bindtap='changeState'>{{state_text}}</button>
+      <button class="white" data-colorid="white"  bindtap='changeColor'></button>
+      <button class="yellow" data-colorid="yellow" bindtap='changeColor'></button>
+      <button class="red" data-colorid="red" bindtap='changeColor'></button>
+      <button class="blue" data-colorid="blue" bindtap='changeColor'></button>
+      <button class="green" data-colorid="green" bindtap='changeColor'></button>
+    </view>
+  </view>
+  <view class="control">控制</view>
+  <view class="item_size">
+    <image class="img" src="../../images/equipment/smart_socket.jpg"></image>
+    <text class="text">米家智能插座</text>
+  </view>
+  <view class="information">信息</view>
+  <scroll-view wx:for="{{items}}" url="{{url}}?listId={{item.id}}&listName={{item.text}}" bindtap="info_detail">
+    <view class="info_1">
+      <view class="image"><image src="{{item.src}}"></image></view>
+      <view class="text12">
+        <text class="text_1">{{item.state}}</text>
+        <text class="text_2">{{item.text}} </text>
+      </view>
+    </view>
+  </scroll-view>
+</view>
+
+<!--智能-->
+<view hidden="{{currentTab!==1}}">
+  <view bindtap='go_temp'>智能页面待补充...</view>
+</view>
+
+<!--设备-->
+<view hidden="{{currentTab!==2}}">
+  <scroll-view wx:for="{{eq_items}}" url="{{url}}?listId={{item.id}}&listName={{item.text}}" bindtap="info_detail">
+    <view class="eq_info_1">
+      <view class="eq_image"><image src="{{item.src}}"></image></view>
+      <view class="eq_text12">
+        <text class="eq_text_1">{{item.text}}</text>
+        <text class="eq_text_2">{{item.state}} </text>
+      </view>
+      <view class='go'>></view>
+    </view>
+  </scroll-view>
+  <button class='add_eq' style="background-image: url('https://s22.postimg.cc/kiwwrq9ht/add.png');background-size: cover" bindtap='add_equitment'></button>
+  <text class='note'>添加子设备</text>
+</view>

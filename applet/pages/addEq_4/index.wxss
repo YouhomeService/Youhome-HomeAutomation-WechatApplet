@@ -1,0 +1,30 @@
+.text {
+  position: absolute;
+  left: 15rpx;
+  top: 80rpx;
+}
+
+.radio-group {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 160rpx;
+}
+
+.radio {
+  display: flex;
+  margin-top: 15rpx;
+  margin-left: 30rpx;
+}
+
+.submit {
+  position: absolute;
+  bottom: 300rpx;
+  left: 0;
+  right: 0;
+  width: 180rpx;
+  height: 100rpx;
+  font-size: 40rpx;
+  text-align: center;
+  margin: auto;
+}

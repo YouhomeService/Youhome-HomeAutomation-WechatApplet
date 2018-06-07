@@ -1,11 +1,14 @@
-<view class='image_icon'>
-    <input placeholder="请输入场景名称" class="name"/>
+<view class='box'>
+    <view class="input_box">
+        <input bindinput="inputEvent" placeholder="请输入房间名称" class="name"/>
+    </view>
+    <button class="btn" bindtap="clickEvent">创建</button>
 </view>
 <text class='choose'>> 请在下列选择一张壁纸</text>
 <view class='container'>
     <view class="row">
         <navigator wx:for="{{items}}">
-            <view class="item_size">
+            <view class="{{item.isChecked?'item_is_checked':'item_normal'}}" bindtap="check" data-id="{{item.id}}">
                 <image class="img" src="{{item.src}}"></image>
             </view>
         </navigator>
