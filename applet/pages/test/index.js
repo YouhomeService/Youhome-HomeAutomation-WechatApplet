@@ -79,11 +79,12 @@ function requestData() {
   
   //requests.requestSearchAllDevice('');
   //requests.addDevice('light.gateway_light_7811dce1bbf3', '多功能网关', '22');
-  //
-  requests.changeDeviceState('33', 'turn_on');
+  //requests.deleteDevice("29");
+  //requests.changeDeviceState('33', 'turn_off');
   // requests.updateUserInfo("1533", "王小明");
   // console.log(decodeURIComponent('%E7%8E%8B%E5%B0%8F%E6%98%8E'));
   // requests.createRoom("1533", "bedroom");
-  // requests.deleteRoom("24");
+  requests.deleteRoom("29");
+  requests.deleteRoom("30");
 }
 

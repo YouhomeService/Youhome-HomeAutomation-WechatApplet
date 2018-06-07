@@ -13,6 +13,8 @@
     "pages/gateway/index",
     "pages/temperature_sensor/index",
     "pages/smart_socket/index",
+    "pages/body_sensor/index",
+    "pages/wireless_switch/index",
     "pages/logs/logs",
     "pages/test/index"
   ],

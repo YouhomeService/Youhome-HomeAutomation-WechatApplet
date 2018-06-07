@@ -8,11 +8,13 @@ App({
   },
 
   onLaunch: function () {
+    this.globalData.login_code = wx.getStorageSync('login_code');
     // 展示本地存储能力
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
 
+<<<<<<< HEAD
     // 登录
     wx.login({
       success: res => {
@@ -26,8 +28,39 @@ App({
             this.data.userId = data.userId
           }
         });
+=======
+    wx.checkSession({
+      success: () => {
+
+      },
+      fail: () => {
+        wx.login({
+          success: res => {
+            if (res.code) {
+              // 发送 res.code 到后台换取 openId, sessionKey, unionId
+              /*
+              wx.request({
+                url: '', //后台的登录url，等后台做好了填上
+                data: {
+                  code: res.code
+                },
+                success: res => {
+                  //将openId存在数据缓存中用于后续操作
+                  wx.setStorage({
+                    key: 'login_code',
+                    data: 
+                  });
+                }
+              })*/
+            } else {
+              // 登陆失败
+            }
+          }
+        })
+>>>>>>> 5c6310be265baa88a118c8486c626873277faffc
       }
     })
+
     // 获取用户信息
     wx.getSetting({
       success: res => {
@@ -43,6 +76,29 @@ App({
               if (this.userInfoReadyCallback) {
                 this.userInfoReadyCallback(res)
               }
+            }
+          })
+        } else {
+          wx.authorize({
+            scope: 'scope.userInfo',
+            success: () => {
+              wx.getUserInfo({
+                success: res => {
+                  // 可以将 res 发送给后台解码出 unionId
+                  this.globalData.userInfo = res.userInfo
+
+                  
+
+                  // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
+                  // 所以此处加入 callback 以防止这种情况
+                  if (this.userInfoReadyCallback) {
+                    this.userInfoReadyCallback(res)
+                  }
+                }
+              })
+            },
+            fail: () => {
+              
             }
           })
         }

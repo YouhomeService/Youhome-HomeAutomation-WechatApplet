@@ -121,12 +121,12 @@ Page({
         break;
       case "人体传感器":
         wx.navigateTo({
-          url: '../gateway/index?id=' + id
+          url: '../body_sensor/index?id=' + id
         })
         break;
       case "无线开关":
         wx.navigateTo({
-          url: '../gateway/index?id=' + id
+          url: '../wireless_switch/index?id=' + id
         })
         break;
       case "智能插座":

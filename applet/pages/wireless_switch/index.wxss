@@ -1,0 +1,14 @@
+.list {
+  position: relative;
+  margin-top: 20rpx;
+  margin-left: 25rpx;
+}
+
+.time {
+  font-size: 35rpx;
+}
+
+.text {
+  font-size: 35rpx;
+  margin-left: 50rpx;
+}

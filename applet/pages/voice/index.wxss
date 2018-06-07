@@ -34,10 +34,10 @@ page{
   visibility: hidden;
 }
 
-.init .button_normal{
+.button_normal{
   position: absolute;
   height: 30px;
-  width: 170px;
+  width: 200px;
   left: 0;
   right: 0;
   top: 360px;
@@ -47,13 +47,13 @@ page{
   -webkit-text-fill-color: #ffffff;
   -webkit-text-stroke-color: #ffffff;
   -moz-text-decoration-color: #ffffff;
-  font-size: 11pt;
+  font-size: 15pt;
 }
 
-.init .button_is_checked{
+.button_is_checked{
   position: absolute;
   height: 30px;
-  width: 170px;
+  width: 200px;
   left: 0;
   right: 0;
   top: 360px;
@@ -63,6 +63,5 @@ page{
   -webkit-text-fill-color: #d6eaf3;
   -webkit-text-stroke-color: #d6eaf3;
   -moz-text-decoration-color: #d6eaf3;
-  font-size: 11pt;
+  font-size: 15pt;
 }
-

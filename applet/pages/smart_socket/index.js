@@ -4,7 +4,7 @@ Page({
   data: {
     in_use: '当前未使用',
     deviceId: '',
-    state: "开启",
+    state: "关闭",
     day_consume: 0.00,
     month_consume: 0.00,
     current_w: 0.00,

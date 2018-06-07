@@ -1,0 +1,4 @@
+<view class='list' wx:for="{{new_items}}">
+  <text class='time'>{{item.time}}</text>
+  <text class='text'>{{item.text}}</text>
+</view>
