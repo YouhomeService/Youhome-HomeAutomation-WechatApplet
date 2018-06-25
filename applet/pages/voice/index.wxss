@@ -65,3 +65,7 @@ page{
   -moz-text-decoration-color: #d6eaf3;
   font-size: 15pt;
 }
+
+.chat {
+  color: white;
+}
