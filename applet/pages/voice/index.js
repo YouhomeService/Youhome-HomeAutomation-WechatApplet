@@ -30,13 +30,53 @@ recordManager.onStop((result) => {
       // 将文本打印到页面上 
       MyPage.setData({ yourMsg: serviceData.text });
 
-      //控制网关
-      if (serviceData.text.search(/开网关/)) {
-        requests.changeDeviceState(devices_id[0].deviceId, 'turn_on');
-        MyPage.setData({ revices: "网关已打开" });
-      } else if (serviceData.text.search(/关网关/)) {
-        requests.changeDeviceState(devices_id[0].deviceId, 'turn_off');
+      // 控制网关
+      if (serviceData.text.search(/开网关的灯/) != -1) {
+        for (var i = 0; i < MyPage.data.devices_name.length; i++) {
+          if (MyPage.data.devices_name[i] == '多功能网关') {
+            requests.changeDeviceState(MyPage.data.devices_id[i], 'turn_on');
+            var temp = MyPage.data;
+            requests.requestSearchDeviceState(MyPage.data.devices_id[i], (temp) => {
+              if (temp.length == 0) {
+                MyPage.setData({ revices: "网关未连接，不可用" });
+              } else {
+                MyPage.setData({ revices: "网关的灯已打开" });
+              }
+            })
+            break;
+          }
+        }
+      } else if ((serviceData.text.search(/关网关的灯/) != -1)||(serviceData.text.search(/关闭网关的灯/) != -1)) {
+        for (var i = 0; i < MyPage.data.devices_name.length; i++) {
+          if (MyPage.data.devices_name[i] == '多功能网关') {
+            requests.changeDeviceState(MyPage.data.devices_id[i], 'turn_off');
+            var temp = MyPage.data;
+            requests.requestSearchDeviceState(MyPage.data.devices_id[i], (temp) => {
+              if (temp.length == 0) {
+                MyPage.setData({ revices: "网关未连接，不可用" });
+              } else {
+                MyPage.setData({ revices: "网关的灯已关闭" });
+              }
+            })
+            break;
+          }
+        }
+      } else if ((serviceData.text.search(/关网关/) != -1)||(serviceData.text.search(/关闭网关/) != -1)) {
+        for (var i = 0; i < MyPage.data.devices_name.length; i++) {
+          if (MyPage.data.devices_name[i] == '多功能网关') {
+            requests.changeDeviceState(MyPage.data.devices_id[i], 'turn_off');
+            break;
+          }
+        }
         MyPage.setData({ revices: "网关已关闭" });
+      } else if (serviceData.text.search(/开网关/) != -1) {
+        for (var i = 0; i < MyPage.data.devices_name.length; i++) {
+          if (MyPage.data.devices_name[i] == '多功能网关') {
+            requests.changeDeviceState(MyPage.data.devices_id[i], 'turn_on');
+            break;
+          }
+        }
+        MyPage.setData({ revices: "网关已打开" });
       } else {
 
       // 一些错误处理 
