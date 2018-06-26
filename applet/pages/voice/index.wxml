@@ -7,7 +7,8 @@
 </view>
 </view>
 
-<audio id="myAudio" autoplay   ></audio>
+<audio id="myAudio" autoplay></audio>
+
 <view class="tool">
-  <button bindtouchstart='sayStartHandel' bindtouchend='sayStopHandel' plain='true' type='primary' class="{{isChecked?'button_is_checked':'button_normal'}}"  type="primary">说</button>
+  <button bindtouchstart='sayStartHandel' bindtouchend='sayStopHandel' plain='true' class="{{isChecked?'button_is_checked':'button_normal'}}">{{button_text}}</button>
 </view>
