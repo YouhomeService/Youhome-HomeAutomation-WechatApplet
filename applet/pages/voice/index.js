@@ -1,7 +1,9 @@
 // 获取微信录音管理器
 const recordManager = wx.getRecorderManager();
-// 后台 接口地址 
+// 后台接口地址 
 const WX_API = "https://youhome.xyz:3005/smart_order";
+// 函数方法引用
+var requests = require('../../request/request.js');
 
 // 当前页面对象
 let MyPage;
@@ -21,11 +23,21 @@ recordManager.onStop((result) => {
     success(ret) {
       console.log("录音发送到后台成功");
       console.log(ret)
-      // 成功返回讯飞语音识别结果  结果格式 可以参考 xJson文件内的文件 
+      // 成功返回讯飞语音识别结果  
+      // 结果格式可以参考xJson文件内的文件 
       let serviceData = JSON.parse(ret.data);
 
       // 将文本打印到页面上 
       MyPage.setData({ yourMsg: serviceData.text });
+
+      //控制网关
+      if (serviceData.text.search(/开网关/)) {
+        requests.changeDeviceState(devices_id[0].deviceId, 'turn_on');
+        MyPage.setData({ revices: "网关已打开" });
+      } else if (serviceData.text.search(/关网关/)) {
+        requests.changeDeviceState(devices_id[0].deviceId, 'turn_off');
+        MyPage.setData({ revices: "网关已关闭" });
+      } else {
 
       // 一些错误处理 
       if (!serviceData.answer || !serviceData.answer.text) {
@@ -69,6 +81,7 @@ recordManager.onStop((result) => {
         default:
           break;
       }
+    }
     },
     fail(err) {
       console.log("录音发送到后台失败");
@@ -80,30 +93,83 @@ recordManager.onStop((result) => {
 // 把文字变成语音念出来
 function sayWords(msg) {
   msg = msg.replace(/"/g, '');
-  // 图简单 直接粗暴的调用 百度的语音播放接口，该接口直接传文本即可
-  // 正确的用法 也需要 调用 讯飞或者百度的语音接口，需要 注册 传入 appid的种。。
+  // 图简单，直接粗暴地调百度的语音播放接口，该接口直接传文本即可
+  // 正确的用法也需要调用讯飞或者百度的语音接口，需要注册传入appid的种。。
   var xfurl = `http://tts.baidu.com/text2audio?idx=1&tex='${msg}'&cuid=baidu_speech_demo&cod=2&lan=zh&ctp=1&pdt=1&spd=3&per=2&vol=9&pit=5`;
   MyPage.audioCtx.setSrc(xfurl);
   MyPage.audioCtx.play();
 }
+
 Page({
   /**
    * 页面的初始数据
    */
   data: {
+    button_text: '请点按后开始说话',
+    isChecked: false,
     yourMsg: "",
-    revices: ""
+    revices: "",
+    room_num: "",
+    devices_id: [],
+    devices_name: [],
+    devices_entityId: []
   },
   sayStartHandel() {
     // 暂停正在播放的所有语音 
     this.audioCtx.pause();
+    // 改变按钮内文字
+    this.setData({
+      isChecked: true,
+      button_text: '正在聆听...'
+    });
     // 开始录音
     recordManager.start({
     });
   },
   sayStopHandel() {
+    // 改变按钮内文字
+    this.setData({
+      isChecked: false,
+      button_text: '请点按后开始说话'
+    });
     //  结束录音
     recordManager.stop({});
+  },
+
+  /**
+   * 数据加载
+   */
+  onLoad: function () {
+    // 根据userId，查找对应的rooms
+    requests.requestSearchRooms(getApp().data.userId, (data) => {
+      this.setData({
+        room_num: data.length
+      });
+      var temp_1 = [];
+      var temp_2 = [];
+      var temp_3 = [];
+      for (var i = 0; i < data.length; i++) {
+        // 根据roomId，查找对应的devices
+        requests.requestSearchDevices(data[i].roomId, (res) => {
+          // 其中的温湿度传感器 实际上绑定了2个设备数据 但只能算作一个设备
+          for (var j = 0; j < res.length; j++) {
+            temp_1.push(res[j].deviceId);
+            temp_2.push(decodeURIComponent(res[j].deviceName));
+            temp_3.push(res[j].entityId);
+          }
+          // console.log("All Devices: " + temp);
+          this.setData({
+            devices_id: temp_1,
+            devices_name: temp_2,
+            devices_entityId: temp_3
+          });
+          // 显示在工作区
+          console.log("All Devices Id: " + this.data.devices_id);
+          console.log("All Devices Name: " + this.data.devices_name);
+          console.log("All Devices entityId: " + this.data.devices_entityId);
+        })
+      }
+    });
   },
 
   /**
@@ -113,4 +179,8 @@ Page({
     MyPage = getCurrentPages()[0];
     this.audioCtx = wx.createAudioContext('myAudio');
   },
+
+  onPullDownRefresh: function () {
+    this.onLoad();
+  }
 })
