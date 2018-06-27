@@ -25,6 +25,7 @@ Page({
       deviceId: id
     })
 
+    /*
     requests.requestSearchDeviceState(id, (data) => {
       if (data.length == 0) {
         wx.showModal({
@@ -35,6 +36,27 @@ Page({
         temp.push({
           time: formatTime2(data.last_changed),
           text: "有人经过"})
+        this.setData({
+          new_items: temp
+        })
+      }
+    })
+    */
+
+    // 查询历史记录
+    requests.requestSearchDeviceHistory(id, (data) => {
+      if (data.length == 0) {
+        wx.showModal({
+          title: '请求不到数据'
+        })
+      } else {
+        var temp = []
+        for (var i = 0; i < data[0].length; i++) {
+          temp.push({
+            time: formatTime2(data[0][i].last_changed),
+            text: "有人经过"
+          })
+        }
         this.setData({
           new_items: temp
         })

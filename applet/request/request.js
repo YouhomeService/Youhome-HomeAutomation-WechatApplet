@@ -65,6 +65,11 @@ function requestSearchAllDevice(data, successCb, errorCb, completeCb) {
   request(api.API_DEVICE_ALL, data, successCb, errorCb, completeCb);
 }
 
+// 根据设备ID，获取设备的历史记录
+function requestSearchDeviceHistory(data, successCb, errorCb, completeCb) {
+  request(api.API_SEARCH_HISTORY, data, successCb, errorCb, completeCb);
+}
+
 /**
  * 网路请求 : POST
  */
@@ -291,5 +296,6 @@ module.exports = {
   requestSearchAllDevice: requestSearchAllDevice,
   addDevice: addDevice,
   deleteDevice: deleteDevice,
-  changeDeviceState: changeDeviceState
+  changeDeviceState: changeDeviceState,
+  requestSearchDeviceHistory: requestSearchDeviceHistory
 }

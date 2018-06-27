@@ -7,6 +7,7 @@ var eq_state = ["", "", "", "设备已离线", "设备已离线"]
 
 Page({
   data: {
+    img: "background-image: url('../../images/2.jpg');background-size: cover",
     deviceId: '',
     navbar: ['网关', '智能', '设备'],
     currentTab: 0,
@@ -57,22 +58,10 @@ Page({
       state: eq_state[4]
     }],
   },
-  
+
   navbarTap: function (e) {
     this.setData({
       currentTab: e.currentTarget.dataset.idx
-    })
-  },
-  changeColor: function(e) {
-    var it = this.data.flag;
-    if (it == 0) {
-      this.setData({
-        state_text: '关灯',
-        flag: 1
-      });
-    }
-    this.setData({
-      lightcolor: e.currentTarget.dataset.colorid,
     })
   },
   changeState: function (e) {
@@ -85,17 +74,19 @@ Page({
             title: '网关未连接，不可用'
           })
         } else {
-          console.log('当前状态：'+data.state)
+          console.log('当前状态：' + data.state)
           if (data.state == 'on') {
             this.setData({
               state_text: '关灯',
-              flag: 1
+              flag: 1,
+              img: "background-image: url('../../images/1.jpg');background-size: cover"
             })
           } else if (data.state == 'off') {
             this.setData({
               state_text: '开灯',
               flag: 0,
-              lightcolor: '#ffffff'
+              lightcolor: '#ffffff',
+              img: "background-image: url('../../images/2.jpg');background-size: cover"
             })
           }
         }
@@ -114,17 +105,19 @@ Page({
             title: '网关未连接，不可用'
           })
         } else {
-          console.log('当前状态：'+data.state)
+          console.log('当前状态：' + data.state)
           if (data.state == 'on') {
             this.setData({
               state_text: '关灯',
-              flag: 1
+              flag: 1,
+              img: "background-image: url('../../images/1.jpg');background-size: cover"
             })
           } else if (data.state == 'off') {
             this.setData({
               state_text: '开灯',
               flag: 0,
-              lightcolor: '#ffffff'
+              lightcolor: '#ffffff',
+              img: "background-image: url('../../images/2.jpg');background-size: cover"
             })
           }
         }
@@ -163,21 +156,22 @@ Page({
           title: '网关未连接，不可用'
         })
       } else {
-        console.log('当前状态：'+data.state)
+        console.log('当前状态：' + data.state)
         if (data.state == 'on') {
           this.setData({
             state_text: '关灯',
-            flag: 1
+            flag: 1,
+            img: "background-image: url('../../images/1.jpg');background-size: cover"
           })
         } else if (data.state == 'off') {
           this.setData({
             state_text: '开灯',
             flag: 0,
-            lightcolor: '#ffffff'
+            lightcolor: '#ffffff',
+            img: "background-image: url('../../images/2.jpg');background-size: cover"
           })
         }
       }
     })
   }
 })
-

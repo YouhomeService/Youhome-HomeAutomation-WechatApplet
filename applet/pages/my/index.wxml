@@ -4,12 +4,12 @@
     <button class='btn' plain='true'><open-data type="userAvatarUrl" class="userinfo-avatar"></open-data></button>
     <open-data type="userNickName" class="userinfo-nickname"></open-data>
   </view>
-  <button class="scene" bindtap="ClickEvent">房间  {{s_num}}</button>
+  <button class="scene">房间  {{s_num}}</button>
   <button class="equipment">设备  {{e_num}}</button>
   <view class="parting_line"></view>
   <view class="info_list">
     <block wx:for="{{info1}}">
-        <view class="info_1">
+        <view class="info_1" bindtap="ClickEvent" data-name="{{item.text}}">
             <view class="weui_cell_hd"><image src="{{item.icon}}"></image></view>
             <view class="weui_cell_bd">
                 <view class="weui_cell_bd_p"> {{item.text}} </view>

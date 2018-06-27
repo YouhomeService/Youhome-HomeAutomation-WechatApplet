@@ -5,14 +5,9 @@
 
 <!--网关-->
 <view hidden="{{currentTab!==0}}">
-  <view class="setting">
+  <view class="setting" style="{{img}}">
     <view class="btn">
-      <button class="light" style="background:{{lightcolor}};" bindtap='changeState'>{{state_text}}</button>
-      <button class="white" data-colorid="white"  bindtap='changeColor'></button>
-      <button class="yellow" data-colorid="yellow" bindtap='changeColor'></button>
-      <button class="red" data-colorid="red" bindtap='changeColor'></button>
-      <button class="blue" data-colorid="blue" bindtap='changeColor'></button>
-      <button class="green" data-colorid="green" bindtap='changeColor'></button>
+      <button class="{{flag?'dark':'light'}}" plain='true' bindtap='changeState'>{{state_text}}</button>
     </view>
   </view>
   <view class="control">控制</view>

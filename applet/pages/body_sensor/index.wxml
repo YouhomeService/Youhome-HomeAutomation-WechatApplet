@@ -1,4 +1,7 @@
+<view class="container">
+<image class= "image"  mode="aspectFill" src='../../images/diary.jpg'></image>
 <view class='list' wx:for="{{new_items}}">
   <text class='time'>{{item.time}}</text>
   <text class='text'>{{item.text}}</text>
+</view>
 </view>

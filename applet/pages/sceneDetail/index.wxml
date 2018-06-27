@@ -7,7 +7,7 @@
   </view>
   <view class="row">
     <navigator wx:for="{{items}}" >
-        <view class="item_size" data-name="{{item.deviceName}}" data-id="{{item.deviceId}}" bindtap="gotoDevice">
+        <view class="item_size" data-name="{{item.deviceName}}" data-id="{{item.deviceId}}" bindtap="gotoDevice" bindlongpress='longPress'>
             <image class="img" src="{{item.url}}"></image>
             <view class="right">
                 <text class="text_1">{{item.deviceName}}</text>
@@ -20,4 +20,5 @@
     </navigator>
   </view>
   <button class='addEq' bindtap="addNewEq">添加新设备</button>
+  <button class='deleteRoom' bindtap="deleteRoom">删除该房间</button>
 </view>

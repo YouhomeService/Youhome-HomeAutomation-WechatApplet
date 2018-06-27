@@ -44,6 +44,7 @@ Page({
   
   onShow: function () {
     // 页面显示
+    this.onReady() // 再次加载，实现返回上一页页面刷新
   },
   onHide: function () {
     // 页面隐藏

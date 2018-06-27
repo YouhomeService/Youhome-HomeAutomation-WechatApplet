@@ -1,6 +1,5 @@
 
 const API_BASE = "https://youhome.xyz";
-//const API_BASE = "https://118.89.50.110";
 
 module.exports = {
   /**
@@ -26,6 +25,9 @@ module.exports = {
   // 获取目前我们所拥有的设备
   API_DEVICE_ALL: API_BASE + "/v1/devices/available",
 
+  // 获取设备的历史记录
+  API_SEARCH_HISTORY: API_BASE + "/v1/devices/history?deviceId=",
+
   /**
    * POST
    */
@@ -50,4 +52,5 @@ module.exports = {
 
   // 改变设备的状态
   API_DEVICE_STATE_CHANGE: API_BASE + "/v1/devices/states",
+
 }

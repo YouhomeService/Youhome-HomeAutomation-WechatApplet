@@ -16,7 +16,8 @@
     "pages/body_sensor/index",
     "pages/wireless_switch/index",
     "pages/logs/logs",
-    "pages/test/index"
+    "pages/about/index",
+    "pages/guide/index"
   ],
   "window":{
     "navigationBarBackgroundColor": "#fff",

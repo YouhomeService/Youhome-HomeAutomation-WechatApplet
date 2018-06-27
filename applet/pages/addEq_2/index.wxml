@@ -1,6 +1,6 @@
 <!--index.wxml-->
 <view class="row">
-    <navigator wx:for="{{items}}" url="{{url}}?listId={{item.id}}&listName={{item.text}}">
+    <navigator wx:for="{{items}}" data-name="{{item.text}}" bindtap="choose">
         <view class="item_size">
             <image class="img" src="{{item.src}}"></image>
             <text class="text">{{item.text}}</text>

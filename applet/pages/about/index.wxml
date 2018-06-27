@@ -1,0 +1,3 @@
+<view class="bg-box">
+  <image class="img" src="../../images/about.jpg" style="width:100%" mode='widthFix'></image>
+</view>

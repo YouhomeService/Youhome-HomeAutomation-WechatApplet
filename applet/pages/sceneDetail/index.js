@@ -98,12 +98,87 @@ Page({
     });
   },
 
+  onPullDownRefresh: function () {
+    var id = this.data.scene_id;
+    var url = this.data.scene_url;
+
+    requests.requestSearchDevices(id, (data) => {
+      if (data.length == 0) {
+        // 没有记录
+        console.log('未添加任何设备')
+      } else {
+        var new_data = [];
+        // 将deviceName解码为中文
+        for (var i = 0; i < data.length; i++) {
+          data[i].deviceName = decodeURIComponent(data[i].deviceName);
+          if (data[i].entityId == "sensor.humidity_158d000222c6da") {
+            this.setData({
+              humidity_id: data[i].deviceId
+            });
+          } else {
+            new_data.push(data[i]);
+          }
+        }
+        this.setData({
+          items: new_data
+        });
+        // 查找每个设备对应的当前状态
+        for (var j = 0; j < new_data.length; j++) {
+          requests.requestSearchDeviceState(new_data[j].deviceId, (data) => {
+            if (data.length == 0) {
+              // console.log('未添加该设备')
+              var temp = this.data.state;
+              temp.push({ deviceState: "设备离线", icon: "../../images/rest.png" });
+              this.setData({
+                state: temp
+              });
+              // console.log(this.data.state)
+            } else {
+              var temp = this.data.state;
+              temp.push({ deviceState: "已连接", icon: "../../images/work.png" });
+              this.setData({
+                state: temp
+              });
+            }
+          })
+        }
+      }
+    })
+  },
+
   addNewEq: function () {
     wx.navigateTo({
       url: '../addNewEq/index?id=' + this.data.scene_id
     })
   },
 
+  deleteRoom: function () {
+    var sceneId = this.data.scene_id
+    wx.showModal({
+      title: '确定删除该房间？',
+      success: function (res) {
+        if (res.confirm) {
+          console.log('用户点击确定')
+          requests.deleteRoom(sceneId, (data) => {
+            if (data.length != 0) {
+              wx.navigateTo({
+                url: '../index/index' //不知道为什么不奏效
+              })
+            }
+          })
+          wx.showToast({
+            title: '删除成功',
+            icon: 'success',
+            duration: 1000,
+            mask: true
+          })
+        } else {
+          console.log('用户点击取消')
+        }
+      }
+    })
+  },
+  
   // 点击设备，进入相应界面
   gotoDevice: function (event) {
     var name = event.currentTarget.dataset.name;
@@ -138,4 +213,32 @@ Page({
         return;
     }
   },
+
+  // 长按设备，选择是否将其删除
+  longPress: function (event) {
+    var id = event.currentTarget.dataset.id;
+    var name = event.currentTarget.dataset.name;
+    var humidity = this.data.humidity_id;
+    wx.showModal({
+      title: '确定移除该设备？',
+      success: function (res) {
+        if (res.confirm) {
+          console.log('用户点击确定')
+          requests.deleteDevice(id)
+          if (name == '温湿度传感器') {
+            requests.deleteDevice(humidity)
+          }
+          wx.showToast({
+            title: '移除成功',
+            icon: 'success',
+            duration: 1000,
+            mask: true
+          })
+          // this.onShow() // 刷新页面
+        } else {
+          console.log('用户点击取消')
+        }
+      }
+    })
+  }
 });
