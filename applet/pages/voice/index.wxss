@@ -64,6 +64,13 @@ page{
   -webkit-text-stroke-color: #d6eaf3;
   -moz-text-decoration-color: #d6eaf3;
   font-size: 12pt;
+<<<<<<< HEAD
+=======
+}
+
+.chat {
+  color: white;
+>>>>>>> 0c2fd231046165c4e9e40c4a1f3e6a63cae6c126
 }
 
 .chat {

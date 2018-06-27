@@ -1,9 +1,17 @@
 <view class='chat'>
+<<<<<<< HEAD
 <view>
   <text class="right_words">{{yourMsg}}</text>
 </view>
 <view>
   <text class="left_revices">{{revices}}</text>
+=======
+<view class="right_words">
+  <text>{{yourMsg}}</text>
+</view>
+<view class="left_revices">
+  <text>{{revices}}</text>
+>>>>>>> 0c2fd231046165c4e9e40c4a1f3e6a63cae6c126
 </view>
 </view>
 
@@ -11,4 +19,8 @@
 
 <view class="tool">
   <button bindtouchstart='sayStartHandel' bindtouchend='sayStopHandel' plain='true' class="{{isChecked?'button_is_checked':'button_normal'}}">{{button_text}}</button>
+<<<<<<< HEAD
 </view>
+=======
+</view>
+>>>>>>> 0c2fd231046165c4e9e40c4a1f3e6a63cae6c126

@@ -31,6 +31,7 @@ recordManager.onStop((result) => {
       MyPage.setData({ yourMsg: serviceData.text });
 
       // 控制网关
+<<<<<<< HEAD
       if (serviceData.text.search(/开网关的灯/) != -1 || serviceData.text.search(/开网关/) != -1) {
         for (var i = 0; i < MyPage.data.devices_name.length; i++) {
           var flag = MyPage.data;
@@ -91,12 +92,39 @@ recordManager.onStop((result) => {
                 for (var k = 0; k < 10; k++) {
                   requests.changeDeviceState(flag.devices_id[i], 'turn_off');
                 }
+=======
+      if (serviceData.text.search(/开网关的灯/) != -1) {
+        for (var i = 0; i < MyPage.data.devices_name.length; i++) {
+          if (MyPage.data.devices_name[i] == '多功能网关') {
+            requests.changeDeviceState(MyPage.data.devices_id[i], 'turn_on');
+            var temp = MyPage.data;
+            requests.requestSearchDeviceState(MyPage.data.devices_id[i], (temp) => {
+              if (temp.length == 0) {
+                MyPage.setData({ revices: "网关未连接，不可用" });
+              } else {
+                MyPage.setData({ revices: "网关的灯已打开" });
+              }
+            })
+            break;
+          }
+        }
+      } else if ((serviceData.text.search(/关网关的灯/) != -1)||(serviceData.text.search(/关闭网关的灯/) != -1)) {
+        for (var i = 0; i < MyPage.data.devices_name.length; i++) {
+          if (MyPage.data.devices_name[i] == '多功能网关') {
+            requests.changeDeviceState(MyPage.data.devices_id[i], 'turn_off');
+            var temp = MyPage.data;
+            requests.requestSearchDeviceState(MyPage.data.devices_id[i], (temp) => {
+              if (temp.length == 0) {
+                MyPage.setData({ revices: "网关未连接，不可用" });
+              } else {
+>>>>>>> 0c2fd231046165c4e9e40c4a1f3e6a63cae6c126
                 MyPage.setData({ revices: "网关的灯已关闭" });
               }
             })
             break;
           }
         }
+<<<<<<< HEAD
       }  else {
 
         // 一些错误处理 
@@ -142,6 +170,69 @@ recordManager.onStop((result) => {
             break;
         }
       }
+=======
+      } else if ((serviceData.text.search(/关网关/) != -1)||(serviceData.text.search(/关闭网关/) != -1)) {
+        for (var i = 0; i < MyPage.data.devices_name.length; i++) {
+          if (MyPage.data.devices_name[i] == '多功能网关') {
+            requests.changeDeviceState(MyPage.data.devices_id[i], 'turn_off');
+            break;
+          }
+        }
+        MyPage.setData({ revices: "网关已关闭" });
+      } else if (serviceData.text.search(/开网关/) != -1) {
+        for (var i = 0; i < MyPage.data.devices_name.length; i++) {
+          if (MyPage.data.devices_name[i] == '多功能网关') {
+            requests.changeDeviceState(MyPage.data.devices_id[i], 'turn_on');
+            break;
+          }
+        }
+        MyPage.setData({ revices: "网关已打开" });
+      } else {
+
+      // 一些错误处理 
+      if (!serviceData.answer || !serviceData.answer.text) {
+        sayWords("对不起 我没有听懂");
+        return;
+      }
+
+      // 将文本打印到页面上 
+      let returnMsg = serviceData.answer.text;
+      MyPage.setData({ revices: returnMsg });
+
+      // 根据讯飞返回的服务类型  采取措施
+      switch (serviceData.service) {
+        case "weather":
+          // 集成天气
+          // 调用语音播放
+          sayWords(returnMsg);
+          console.log("天气" + returnMsg);
+          break;
+        case "baike":
+          // 集成百科
+          // 调用语音播放
+          sayWords(returnMsg);
+          console.log("百科" + returnMsg);
+          break;
+        case "radio":
+          // 集成电台 调用 微信小程序内的组件进行播放
+          var resultArr = serviceData.data.result;
+          var tmpUrl = resultArr[0].url;
+          console.log("电台 " + tmpUrl);
+          MyPage.audioCtx.setSrc(tmpUrl);
+          MyPage.audioCtx.play();
+          break;
+        case "joke":
+          // 集成笑话
+          var resultArr = serviceData.data.result;
+          var joke1 = resultArr[0].content;
+          console.log("笑话" + joke1);
+          sayWords(joke1);
+          break;
+        default:
+          break;
+      }
+    }
+>>>>>>> 0c2fd231046165c4e9e40c4a1f3e6a63cae6c126
     },
     fail(err) {
       console.log("录音发送到后台失败");
@@ -243,4 +334,8 @@ Page({
   onPullDownRefresh: function () {
     this.onLoad();
   }
+<<<<<<< HEAD
 })
+=======
+})
+>>>>>>> 0c2fd231046165c4e9e40c4a1f3e6a63cae6c126
